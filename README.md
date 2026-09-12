@@ -35,8 +35,8 @@ Ce projet est le portfolio professionnel de **Rosita Diouf**, conçu pour mettre
 
 ### 1. Cloner le dépôt
 ```bash
-git clone https://github.com/rositadiouf02-hub/Rosita-Diouf.git
-cd Rosita-Diouf
+git clone https://github.com/rositadiouf02-hub/Rosita-Diouf02.git
+cd Rosita-Diouf02
 ```
 
 ### 2. Installer les dépendances
