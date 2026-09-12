@@ -3,6 +3,8 @@
 > **Assistante Digital & Designer UI/UX** — Dakar, Sénégal  
 > Portfolio web personnel moderne, créatif, immersif et haut de gamme.
 
+🌐 **Site en ligne :** [https://rositadiouf02-hub.github.io/Rosita-Diouf02/](https://rositadiouf02-hub.github.io/Rosita-Diouf02/)
+
 ---
 
 ## 📌 Présentation
