@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import profilePhoto from "./assets/profile.jpg";
+import presentationVideo from "./assets/presentation.mp4";
 
 // ── Floating 3D decorative shapes ──────────────────────────────────────────
 function SoundWave({ className = "" }: { className?: string }) {
@@ -265,7 +267,7 @@ function Hero() {
               }}
             >
               <img
-                src="/photo/LHSO4960.JPG"
+                src={profilePhoto}
                 alt="Rosita Diouf — Assistante Digital & Designer UI/UX"
                 className="w-full h-full object-cover object-[50%_20%] transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="eager"
@@ -616,7 +618,7 @@ function Projects() {
             <div className="glass rounded-3xl overflow-hidden border border-[#DCC7AD]/30 card-hover grid grid-cols-1 md:grid-cols-2">
               <div className="relative min-h-72 md:min-h-[360px] bg-[#3a2218] flex items-center justify-center overflow-hidden group">
                 <video
-                  src="/photo/Sans titre - March 11, 2026 at 08.40.14.mp4"
+                  src={presentationVideo}
                   autoPlay
                   loop
                   muted
