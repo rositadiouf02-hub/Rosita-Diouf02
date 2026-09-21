@@ -80,6 +80,9 @@ Les fichiers générés se trouveront dans le dossier `dist/`.
 ## 👩‍💻 Profil & Contact
 
 - **Nom :** Rosita Diouf
+- **Rôle :** Assistante Digital · Designer UI/UX · Community Manager (CM)
+- **Email :** [rositadiouf02@gmail.com](mailto:rositadiouf02@gmail.com)
+- **Téléphone / WhatsApp :** [+221 70 406 20 27](tel:+221704062027)
 - **Localisation :** Dakar, Sénégal
 - **GitHub :** [@rositadiouf02-hub](https://github.com/rositadiouf02-hub)
 

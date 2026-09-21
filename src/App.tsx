@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import profilePhoto from "./assets/profile.jpg";
 import presentationVideo from "./assets/presentation.mp4";
+import cvPhoto from "./assets/cv-rosita-diouf.jpg";
 
 // ── Floating 3D decorative shapes ──────────────────────────────────────────
 function SoundWave({ className = "" }: { className?: string }) {
@@ -95,6 +96,7 @@ function Navbar() {
     ["Services", "#services"],
     ["Projets", "#projets"],
     ["Parcours", "#parcours"],
+    ["CV", "#cv"],
     ["Contact", "#contact"],
   ];
 
@@ -226,7 +228,7 @@ function Hero() {
               DIOUF
             </h1>
             <p className="font-display text-xl md:text-2xl font-light italic text-[#7B1E2B]/80">
-              Assistante Digital & Designer UI/UX
+              Assistante Digital · Designer UI/UX · Community Manager (CM)
             </p>
           </div>
 
@@ -235,7 +237,7 @@ function Hero() {
             {" "}Passionnée par le digital, le design et les nouvelles technologies.
           </p>
 
-          <div className="animate-fade-up flex flex-wrap gap-4" style={{ animationDelay: "0.3s" }}>
+          <div className="animate-fade-up flex flex-wrap gap-4 items-center" style={{ animationDelay: "0.3s" }}>
             <a
               href="#projets"
               onClick={(e) => { e.preventDefault(); document.querySelector("#projets")?.scrollIntoView({ behavior: "smooth" }); }}
@@ -245,12 +247,20 @@ function Hero() {
               Découvrir mes projets
             </a>
             <a
+              href="#cv"
+              onClick={(e) => { e.preventDefault(); document.querySelector("#cv")?.scrollIntoView({ behavior: "smooth" }); }}
+              className="px-6 py-3.5 rounded-2xl font-semibold border-2 transition-all duration-300 hover:bg-[#7B1E2B] hover:text-white hover:-translate-y-0.5 flex items-center gap-2"
+              style={{ color: "#7B1E2B", borderColor: "#7B1E2B", background: "rgba(123,30,43,0.04)" }}
+            >
+              <span>📄</span>
+              <span>Mon CV</span>
+            </a>
+            <a
               href="#contact"
               onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
-              className="px-7 py-3.5 rounded-2xl font-semibold border-2 transition-all duration-300 hover:bg-[#7B1E2B] hover:text-white hover:-translate-y-0.5"
-              style={{ color: "#7B1E2B", borderColor: "#7B1E2B" }}
+              className="px-6 py-3.5 rounded-2xl font-semibold transition-all duration-300 hover:text-[#7B1E2B] hover:-translate-y-0.5 text-[#2a1a10]/70"
             >
-              Me contacter
+              Me contacter →
             </a>
           </div>
         </div>
@@ -400,12 +410,57 @@ function About() {
 
 // ── Digital Profile ────────────────────────────────────────────────────────
 const domains = [
-  { num: "01", title: "UI/UX DESIGN", desc: "Créer des interfaces modernes, intuitives et adaptées aux utilisateurs.", icon: "◈" },
-  { num: "02", title: "DESIGN GRAPHIQUE", desc: "Créer des identités visuelles, supports graphiques et univers de marque.", icon: "◉" },
-  { num: "03", title: "COMMUNICATION DIGITALE", desc: "Transformer les idées en contenus et messages adaptés au digital.", icon: "◎" },
-  { num: "04", title: "MARKETING DIGITAL", desc: "Utiliser des méthodes et outils de stratégie marketing pour structurer les projets.", icon: "◆" },
-  { num: "05", title: "INTELLIGENCE ARTIFICIELLE", desc: "Explorer l'IA générative et ses possibilités dans les projets numériques.", icon: "◇" },
-  { num: "06", title: "WEB", desc: "Comprendre et utiliser les technologies frontend pour concevoir des interfaces web.", icon: "○" },
+  {
+    num: "01",
+    title: "UI/UX DESIGN",
+    desc: "Créer des interfaces modernes, intuitives et adaptées aux utilisateurs.",
+    icon: "◈",
+    tags: ["Recherche utilisateur", "Wireframing", "Figma", "Design System"],
+  },
+  {
+    num: "02",
+    title: "DESIGN GRAPHIQUE",
+    desc: "Créer des identités visuelles, supports graphiques et univers de marque.",
+    icon: "◉",
+    tags: ["Identité visuelle", "Branding", "Chartes graphiques", "Print & Web"],
+  },
+  {
+    num: "03",
+    title: "COMMUNICATION DIGITALE",
+    desc: "Transformer les idées en contenus et messages adaptés au digital.",
+    icon: "◎",
+    tags: ["Stratégie éditoriale", "Storytelling", "Contenus digitaux"],
+  },
+  {
+    num: "04",
+    title: "COMMUNITY MANAGEMENT (CM)",
+    desc: "Animer et fédérer les communautés, concevoir des plannings éditoriaux, stimuler l'engagement et valoriser l'image de marque sur les réseaux sociaux.",
+    icon: "✦",
+    highlight: true,
+    badge: "CM",
+    tags: ["Animation réseaux", "Planning éditorial", "Modération", "Engagement & KPIs"],
+  },
+  {
+    num: "05",
+    title: "MARKETING DIGITAL",
+    desc: "Utiliser des méthodes et outils de stratégie marketing pour structurer les projets.",
+    icon: "◆",
+    tags: ["Méthodes AIDA / SMART", "Acquisition", "Inbound Marketing"],
+  },
+  {
+    num: "06",
+    title: "INTELLIGENCE ARTIFICIELLE",
+    desc: "Explorer l'IA générative et ses possibilités dans les projets numériques.",
+    icon: "◇",
+    tags: ["IA générative", "Prompt Engineering", "Outils IA créatifs"],
+  },
+  {
+    num: "07",
+    title: "WEB",
+    desc: "Comprendre et utiliser les technologies frontend pour concevoir des interfaces web.",
+    icon: "○",
+    tags: ["HTML5 / CSS3", "JavaScript", "Responsive Design"],
+  },
 ];
 
 function DigitalProfile() {
@@ -422,19 +477,169 @@ function DigitalProfile() {
         </Reveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {domains.map((d, i) => (
-            <Reveal key={d.num} delay={i * 80}>
-              <div className="glass rounded-3xl p-7 card-hover border border-[#DCC7AD]/30 h-full">
-                <div className="flex items-start justify-between mb-5">
-                  <span className="text-3xl text-[#A67C52]/60">{d.icon}</span>
-                  <span className="font-mono-custom text-xs text-[#7B1E2B]/50 tracking-widest">{d.num}</span>
+          {domains.map((d, i) => {
+            const isLast = i === domains.length - 1;
+            return (
+              <Reveal
+                key={d.num}
+                delay={i * 70}
+                className={isLast ? "sm:col-span-2 lg:col-span-1 lg:col-start-2 sm:max-w-md sm:mx-auto lg:max-w-none w-full" : ""}
+              >
+                <div
+                  className={`glass rounded-3xl p-7 card-hover border h-full flex flex-col justify-between transition-all duration-300 ${
+                    d.highlight
+                      ? "border-[#7B1E2B]/40 shadow-lg shadow-[#7B1E2B]/5 ring-1 ring-[#7B1E2B]/20"
+                      : "border-[#DCC7AD]/30"
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-start justify-between mb-5">
+                      <span className="text-3xl text-[#A67C52]/60">{d.icon}</span>
+                      <div className="flex items-center gap-2">
+                        {d.badge && (
+                          <span className="font-mono-custom text-[10px] uppercase px-2 py-0.5 rounded-full font-semibold bg-[#7B1E2B] text-white tracking-wider shadow-sm">
+                            {d.badge}
+                          </span>
+                        )}
+                        <span className="font-mono-custom text-xs text-[#7B1E2B]/50 tracking-widest">{d.num}</span>
+                      </div>
+                    </div>
+                    <h3 className="font-mono-custom text-xs font-medium tracking-widest text-[#7B1E2B] mb-3">{d.title}</h3>
+                    <p className="text-sm text-[#2a1a10]/70 leading-relaxed mb-5">{d.desc}</p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[#DCC7AD]/25">
+                    {d.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[11px] font-mono-custom px-2.5 py-1 rounded-full text-[#7B1E2B] font-medium"
+                        style={{ background: "rgba(220,199,173,0.3)" }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="font-mono-custom text-xs font-medium tracking-widest text-[#7B1E2B] mb-3">{d.title}</h3>
-                <p className="text-sm text-[#2a1a10]/70 leading-relaxed">{d.desc}</p>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
+
+        {/* Showcase Métier CM — Contenu détaillé */}
+        <Reveal delay={150} className="mt-14">
+          <div
+            className="glass rounded-3xl p-8 md:p-10 border border-[#7B1E2B]/20 relative overflow-hidden shadow-xl"
+            style={{
+              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(247, 239, 229, 0.95) 100%)",
+            }}
+          >
+            {/* Ambient decorative glow */}
+            <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-[#7B1E2B]/5 blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-16 -left-16 w-52 h-52 rounded-full bg-[#A67C52]/10 blur-3xl pointer-events-none" />
+
+            <div className="relative z-10">
+              {/* Header */}
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-[#DCC7AD]/50">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#7B1E2B] animate-pulse" />
+                    <span className="font-mono-custom text-xs font-semibold tracking-widest uppercase text-[#7B1E2B]">
+                      Focus Métier — Community Manager (CM)
+                    </span>
+                  </div>
+                  <h3 className="font-display text-2xl md:text-3xl font-semibold text-[#7B1E2B]">
+                    Fédérer votre communauté, incarner votre voix & booster l'engagement
+                  </h3>
+                </div>
+
+                {/* Platforms badges */}
+                <div className="flex flex-wrap gap-2 items-center">
+                  {["Instagram", "LinkedIn", "TikTok", "Facebook", "Meta Suite"].map((net) => (
+                    <span
+                      key={net}
+                      className="px-3 py-1 rounded-full text-xs font-mono-custom font-medium transition-transform duration-200 hover:scale-105"
+                      style={{
+                        background: "rgba(123, 30, 43, 0.08)",
+                        color: "#7B1E2B",
+                        border: "1px solid rgba(123, 30, 43, 0.2)",
+                      }}
+                    >
+                      {net}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Intro text */}
+              <p className="text-sm md:text-base text-[#2a1a10]/80 leading-relaxed my-6 max-w-4xl">
+                En tant que <strong className="text-[#7B1E2B]">Community Manager</strong>, j'aide les marques et créateurs à bâtir une présence captivante et engageante sur les réseaux sociaux. De la stratégie éditoriale à l'animation quotidienne, je veille à transformer vos abonnés en une communauté active, fidèle et ambassadrice.
+              </p>
+
+              {/* 4 Pillars of CM */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-[#DCC7AD]/40 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="w-8 h-8 rounded-xl bg-[#7B1E2B]/10 flex items-center justify-center text-[#7B1E2B] font-bold text-xs font-mono-custom">
+                      01
+                    </span>
+                    <span className="text-xs text-[#A67C52] font-mono-custom">STRATÉGIE</span>
+                  </div>
+                  <h4 className="font-display text-base font-semibold text-[#7B1E2B] mb-2">
+                    Planning & Ligne éditoriale
+                  </h4>
+                  <p className="text-xs text-[#2a1a10]/70 leading-relaxed">
+                    Conception de calendriers de publication mensuels, harmonisation du ton de marque et programmation ciblée.
+                  </p>
+                </div>
+
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-[#DCC7AD]/40 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="w-8 h-8 rounded-xl bg-[#7B1E2B]/10 flex items-center justify-center text-[#7B1E2B] font-bold text-xs font-mono-custom">
+                      02
+                    </span>
+                    <span className="text-xs text-[#A67C52] font-mono-custom">CRÉATION</span>
+                  </div>
+                  <h4 className="font-display text-base font-semibold text-[#7B1E2B] mb-2">
+                    Contenus engageants
+                  </h4>
+                  <p className="text-xs text-[#2a1a10]/70 leading-relaxed">
+                    Production de carrousels, posts interactifs, stories et formats vidéo courts avec Canva et Figma, enrichis de storytelling.
+                  </p>
+                </div>
+
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-[#DCC7AD]/40 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="w-8 h-8 rounded-xl bg-[#7B1E2B]/10 flex items-center justify-center text-[#7B1E2B] font-bold text-xs font-mono-custom">
+                      03
+                    </span>
+                    <span className="text-xs text-[#A67C52] font-mono-custom">INTERACTION</span>
+                  </div>
+                  <h4 className="font-display text-base font-semibold text-[#7B1E2B] mb-2">
+                    Animation & Modération
+                  </h4>
+                  <p className="text-xs text-[#2a1a10]/70 leading-relaxed">
+                    Gestion bienveillante et réactive des messages et commentaires, sondages, quiz et veille de l'e-réputation.
+                  </p>
+                </div>
+
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-[#DCC7AD]/40 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="w-8 h-8 rounded-xl bg-[#7B1E2B]/10 flex items-center justify-center text-[#7B1E2B] font-bold text-xs font-mono-custom">
+                      04
+                    </span>
+                    <span className="text-xs text-[#A67C52] font-mono-custom">PERFORMANCE</span>
+                  </div>
+                  <h4 className="font-display text-base font-semibold text-[#7B1E2B] mb-2">
+                    Analyse des KPIs
+                  </h4>
+                  <p className="text-xs text-[#2a1a10]/70 leading-relaxed">
+                    Suivi du taux d'engagement, croissance d'abonnés, portée des publications et reporting d'optimisation régulier.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -443,27 +648,63 @@ function DigitalProfile() {
 // ── Compétences ────────────────────────────────────────────────────────────
 const skillGroups = [
   {
+    cat: "COMMUNITY MANAGEMENT (CM)",
+    badge: "CM",
+    desc: "Animation et fédération de communautés, stratégie éditoriale, modération et engagement sur les réseaux sociaux.",
+    tools: ["Meta Business Suite", "Canva", "CapCut", "Instagram", "LinkedIn", "TikTok"],
+    items: [
+      "Animation de communautés",
+      "Calendrier éditorial & Planning",
+      "Création de formats engageants (Reels, Carrousels, Stories)",
+      "Modération & Relation abonnés",
+      "Stratégie Social Media (Instagram, LinkedIn, TikTok)",
+      "Analyse des statistiques & Taux d'engagement (KPIs)",
+      "Veille de tendances & E-réputation",
+      "Canva & Meta Business Suite",
+      "Fidélisation d'audience & Acquisition",
+      "Gestion de l'image de marque",
+    ],
+  },
+  {
     cat: "UI/UX DESIGN",
+    badge: null,
+    desc: "Recherche utilisateur, ergonomie, wireframing et conception de parcours intuitifs et accessibles.",
+    tools: ["Figma", "FigJam", "Design System"],
     items: ["Recherche utilisateur", "User Flow", "Wireframing", "Prototypage", "Design d'interfaces", "Design System", "Responsive Design", "Figma"],
   },
   {
     cat: "DESIGN GRAPHIQUE & BRANDING",
+    badge: null,
+    desc: "Conception d'identités visuelles percutantes, chartes graphiques et supports de communication de marque.",
+    tools: ["Illustrator", "Photoshop", "Canva"],
     items: ["Identité visuelle", "Logo", "Charte graphique", "Moodboard", "Affiches", "Branding", "Communication visuelle"],
   },
   {
     cat: "COMMUNICATION DIGITALE",
+    badge: null,
+    desc: "Définition de stratégies éditoriales cohérentes et storytelling adapté à l'univers digital.",
+    tools: ["Storytelling", "Planning éditorial", "Copywriting"],
     items: ["Stratégie de communication", "Création de contenu", "Storytelling", "Réseaux sociaux", "Communication digitale"],
   },
   {
     cat: "MARKETING DIGITAL",
+    badge: null,
+    desc: "Méthodes stratégiques pour structurer les projets numériques, analyser les cibles et piloter la performance.",
+    tools: ["AIDA", "SWOT", "SMART", "BMC"],
     items: ["AIDA", "SWOT", "SMART", "4P / 7P", "7C", "Growth Hacking", "Content Marketing", "Business Model Canvas"],
   },
   {
     cat: "INTELLIGENCE ARTIFICIELLE",
+    badge: null,
+    desc: "Exploration et intégration de l'IA générative et prompt engineering pour démultiplier la créativité.",
+    tools: ["ChatGPT", "Midjourney", "Claude"],
     items: ["IA générative", "Prompt Engineering", "Création de prompts", "Outils IA", "IA appliquée au design", "IA appliquée à la communication"],
   },
   {
     cat: "WEB",
+    badge: null,
+    desc: "Technologies frontend modernes pour concevoir des sites web réactifs et optimisés.",
+    tools: ["HTML5", "CSS3", "JavaScript"],
     items: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
   },
 ];
@@ -489,7 +730,7 @@ function Skills() {
                 <button
                   key={g.cat}
                   onClick={() => setActive(i)}
-                  className={`text-left px-5 py-4 rounded-2xl text-sm font-mono-custom tracking-wider transition-all duration-200 ${
+                  className={`text-left px-5 py-4 rounded-2xl text-sm font-mono-custom tracking-wider transition-all duration-200 flex items-center justify-between gap-3 ${
                     active === i
                       ? "text-white shadow-lg"
                       : "text-[#7B1E2B] hover:bg-[#DCC7AD]/30"
@@ -497,7 +738,16 @@ function Skills() {
                   style={active === i ? { background: "linear-gradient(135deg, #7B1E2B, #A67C52)" } : {}}
                   aria-pressed={active === i}
                 >
-                  {g.cat}
+                  <span className="truncate">{g.cat}</span>
+                  {g.badge && (
+                    <span
+                      className={`text-[10px] uppercase px-2 py-0.5 rounded-full font-bold tracking-wider flex-shrink-0 ${
+                        active === i ? "bg-white text-[#7B1E2B]" : "bg-[#7B1E2B] text-white"
+                      }`}
+                    >
+                      {g.badge}
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
@@ -505,25 +755,52 @@ function Skills() {
 
           {/* Skills display */}
           <Reveal delay={100} className="lg:col-span-2">
-            <div className="glass rounded-3xl p-8 min-h-64 border border-[#DCC7AD]/30">
-              <h3 className="font-mono-custom text-xs tracking-widest text-[#A67C52] mb-6 uppercase">
-                {skillGroups[active].cat}
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {skillGroups[active].items.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                    style={{
-                      background: "rgba(220,199,173,0.25)",
-                      color: "#7B1E2B",
-                      borderColor: "rgba(220,199,173,0.5)",
-                    }}
-                  >
-                    {skill}
+            <div className="glass rounded-3xl p-8 min-h-64 border border-[#DCC7AD]/30 flex flex-col justify-between">
+              <div>
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                  <h3 className="font-mono-custom text-xs tracking-widest text-[#A67C52] uppercase font-semibold">
+                    {skillGroups[active].cat}
+                  </h3>
+                  <span className="font-mono-custom text-xs text-[#7B1E2B]/60">
+                    {skillGroups[active].items.length} expertises
                   </span>
-                ))}
+                </div>
+                <p className="text-sm text-[#2a1a10]/75 mb-6 leading-relaxed">
+                  {skillGroups[active].desc}
+                </p>
+
+                <div className="flex flex-wrap gap-2.5 mb-6">
+                  {skillGroups[active].items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                      style={{
+                        background: "rgba(220,199,173,0.25)",
+                        color: "#7B1E2B",
+                        borderColor: "rgba(220,199,173,0.5)",
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
+
+              {skillGroups[active].tools && (
+                <div className="pt-4 border-t border-[#DCC7AD]/30 flex flex-wrap items-center gap-2 mt-4">
+                  <span className="text-xs font-mono-custom text-[#A67C52] uppercase tracking-wider">
+                    Outils associés :
+                  </span>
+                  {skillGroups[active].tools.map((t) => (
+                    <span
+                      key={t}
+                      className="text-xs font-mono-custom px-2.5 py-1 rounded-lg bg-white/80 border border-[#DCC7AD]/50 text-[#7B1E2B] font-medium shadow-xs"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </Reveal>
         </div>
@@ -548,14 +825,26 @@ const services = [
   },
   {
     num: "03",
-    title: "COMMUNICATION DIGITALE",
-    desc: "Création de contenus et conception de supports adaptés aux plateformes digitales.",
-    icon: "◉",
+    title: "COMMUNITY MANAGEMENT (CM)",
+    desc: "Animation de vos réseaux sociaux, plannings éditoriaux, modération proactive et développement de l'engagement de votre communauté.",
+    icon: "✦",
   },
   {
     num: "04",
-    title: "DIGITAL & IA",
-    desc: "Exploration et conception de solutions numériques intégrant les possibilités de l'intelligence artificielle.",
+    title: "COMMUNICATION DIGITALE",
+    desc: "Élaboration de stratégies de communication, storytelling percutant et création de contenus adaptés aux plateformes web.",
+    icon: "◉",
+  },
+  {
+    num: "05",
+    title: "MARKETING DIGITAL",
+    desc: "Structuration de vos projets, stratégies d'acquisition (AIDA, SMART, SWOT) et optimisation de la visibilité en ligne.",
+    icon: "◆",
+  },
+  {
+    num: "06",
+    title: "DIGITAL & INNOVATION IA",
+    desc: "Exploration et conception de solutions numériques intégrant les possibilités créatives de l'intelligence artificielle.",
     icon: "◇",
   },
 ];
@@ -573,18 +862,18 @@ function Services() {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
           {services.map((s, i) => (
-            <Reveal key={s.num} delay={i * 100}>
-              <div className="group glass rounded-3xl p-8 card-hover border border-[#DCC7AD]/30 h-full relative overflow-hidden">
-                <div className="absolute top-4 right-4 font-mono-custom text-4xl font-bold text-[#DCC7AD]/50 leading-none select-none">
-                  {s.num}
+            <Reveal key={s.num} delay={i * 80}>
+              <div className="group glass rounded-3xl p-8 card-hover border border-[#DCC7AD]/30 h-full relative overflow-hidden flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-4xl text-[#A67C52] group-hover:scale-110 transition-transform duration-300">{s.icon}</span>
+                    <span className="font-mono-custom text-3xl font-bold text-[#DCC7AD]/50 leading-none select-none">{s.num}</span>
+                  </div>
+                  <h3 className="font-mono-custom text-xs font-semibold tracking-widest text-[#7B1E2B] mb-3">{s.title}</h3>
+                  <p className="text-sm text-[#2a1a10]/70 leading-relaxed">{s.desc}</p>
                 </div>
-                <div className="text-4xl mb-5 text-[#A67C52] group-hover:scale-110 transition-transform duration-300">
-                  {s.icon}
-                </div>
-                <h3 className="font-mono-custom text-xs font-medium tracking-widest text-[#7B1E2B] mb-3">{s.title}</h3>
-                <p className="text-sm text-[#2a1a10]/70 leading-relaxed">{s.desc}</p>
                 <div className="mt-6 w-8 h-0.5 rounded-full group-hover:w-16 transition-all duration-300" style={{ background: "linear-gradient(90deg, #7B1E2B, #A67C52)" }} />
               </div>
             </Reveal>
@@ -656,49 +945,8 @@ function Projects() {
             </div>
           </Reveal>
 
-          {/* Project 02 — Originaire de Cabrousse */}
+          {/* Project 02 — MÉLOVOX — FEATURED */}
           <Reveal delay={100}>
-            <div className="glass rounded-3xl overflow-hidden border border-[#DCC7AD]/30 card-hover grid grid-cols-1 md:grid-cols-2">
-              <div className="p-8 space-y-4 order-2 md:order-1">
-                <span className="font-mono-custom text-xs text-[#A67C52] tracking-widest">02</span>
-                <h3 className="font-display text-3xl font-semibold text-[#7B1E2B]">ORIGINAIRE DE CABROUSSE</h3>
-                <div className="flex flex-wrap gap-2">
-                  {["Branding", "Communication", "Digital"].map((tag) => (
-                    <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium" style={{ background: "rgba(220,199,173,0.4)", color: "#7B1E2B" }}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-[#2a1a10]/70 leading-relaxed">
-                  Projet de valorisation de l'identité, du patrimoine et des activités locales à travers une communication digitale moderne.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {["Branding", "Design graphique", "Communication", "Digital"].map((d) => (
-                    <span key={d} className="text-xs text-[#A67C52] font-mono-custom">• {d}</span>
-                  ))}
-                </div>
-                <button className="mt-4 px-6 py-2.5 rounded-xl text-white text-sm font-semibold transition-all hover:opacity-90 hover:shadow-lg" style={{ background: "linear-gradient(135deg, #7B1E2B, #A67C52)" }}>
-                  Voir le projet
-                </button>
-              </div>
-              <div
-                className="h-64 md:h-auto flex items-center justify-center order-1 md:order-2"
-                style={{ background: "linear-gradient(135deg, #DCC7AD, #c09a72)" }}
-                role="img"
-                aria-label="Mockup du projet Originaire de Cabrousse"
-              >
-                <div className="text-center space-y-3 p-8">
-                  <div className="w-16 h-16 rounded-2xl mx-auto border-2 border-[#7B1E2B]/30 flex items-center justify-center" style={{ background: "rgba(123,30,43,0.08)" }}>
-                    <span className="text-2xl text-[#7B1E2B]">◈</span>
-                  </div>
-                  <p className="text-sm text-[#7B1E2B] font-medium">[MOCKUP ORIGINAIRE DE CABROUSSE À AJOUTER]</p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Project 03 — MÉLOVOX — FEATURED */}
-          <Reveal delay={150}>
             <div
               className="rounded-3xl overflow-hidden card-hover relative"
               style={{ background: "linear-gradient(135deg, #7B1E2B 0%, #5a1520 50%, #3d0e16 100%)" }}
@@ -709,7 +957,7 @@ function Projects() {
               <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-0">
                 <div className="p-10 md:p-12 space-y-6">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono-custom text-xs text-[#DCC7AD]/60 tracking-widest">03</span>
+                    <span className="font-mono-custom text-xs text-[#DCC7AD]/60 tracking-widest">02</span>
                     <span className="px-3 py-1 rounded-full text-xs font-mono-custom font-medium" style={{ background: "rgba(220,199,173,0.2)", color: "#DCC7AD" }}>
                       PROJET PHARE
                     </span>
@@ -873,9 +1121,9 @@ function Journey() {
   const formations = [
     {
       institution: "Sonatel Academy",
-      title: "Formation — Assistante Digital",
+      title: "Formation — Assistante Digital & Community Management",
       date: "[DATE À AJOUTER]",
-      skills: ["Communication digitale", "Marketing digital", "Design", "UI/UX", "Création de contenu", "Gestion de projets", "Culture numérique", "Technologies web"],
+      skills: ["Community Management (CM)", "Stratégie Social Media", "Modération", "Communication digitale", "Marketing digital", "Design UI/UX", "Création de contenu", "Gestion de projets"],
     },
     {
       institution: "Orange Digital Center × Bixist Africa",
@@ -886,13 +1134,13 @@ function Journey() {
   ];
 
   const evolution = [
-    "Découverte du digital",
-    "Communication digitale",
-    "Design graphique",
-    "UI/UX Design",
-    "Création de projets numériques",
-    "Intelligence artificielle",
-    "Innovation digitale",
+    "Découverte du digital & communication",
+    "Community Management & Animation réseaux",
+    "Design graphique & Identité visuelle",
+    "Conception UI/UX & Interfaces",
+    "Création de contenus & Projets web",
+    "Intelligence artificielle générative",
+    "Innovation digitale & Stratégie globale",
   ];
 
   return (
@@ -961,7 +1209,7 @@ function Journey() {
               </div>
               <div className="mt-8 pt-6 border-t border-[#DCC7AD]/30">
                 <p className="text-sm text-[#2a1a10]/70 italic leading-relaxed">
-                  Chaque apprentissage m'a permis d'élargir ma vision du digital et de développer un profil polyvalent à la croisée du design, de la communication, de la technologie et de l'intelligence artificielle.
+                  Chaque apprentissage m'a permis d'élargir ma vision du digital et de développer un profil polyvalent à la croisée du design, du community management, de la communication, de la technologie et de l'intelligence artificielle.
                 </p>
               </div>
             </div>
@@ -972,13 +1220,262 @@ function Journey() {
   );
 }
 
+// ── Curriculum Vitae ──────────────────────────────────────────────────────
+function CurriculumVitae() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const skillsBar = [
+    { name: "Assistance digitale", pct: 95 },
+    { name: "Community Management (CM)", pct: 90 },
+    { name: "Communication digitale", pct: 90 },
+    { name: "Création de contenus", pct: 88 },
+    { name: "Design graphique & UI/UX", pct: 85 },
+    { name: "Intelligence artificielle", pct: 80 },
+    { name: "Gestion de projets & Organisation", pct: 85 },
+  ];
+
+  const qualities = [
+    "Créative",
+    "Organisée",
+    "Souriante",
+    "Ambitieuse",
+    "Curieuse",
+    "Esprit d'équipe",
+    "Sens de l'initiative",
+  ];
+
+  return (
+    <section id="cv" className="py-24 relative overflow-hidden" style={{ background: "#F7F2EC" }} aria-label="Curriculum Vitae">
+      <FloatingSphere size={260} color="#DCC7AD" opacity={0.3} className="top-10 right-[-80px] animate-float-slow" />
+      <FloatingRing size={160} color="#7B1E2B" className="bottom-10 left-10 animate-spin-slow" />
+
+      <div className="max-w-6xl mx-auto px-6">
+        <Reveal className="mb-14">
+          <div className="flex items-center gap-4">
+            <span className="font-mono-custom text-xs text-[#A67C52] tracking-widest uppercase">07 —</span>
+            <h2 className="font-display text-5xl md:text-6xl font-semibold text-gradient">Mon Curriculum Vitae</h2>
+          </div>
+          <p className="mt-4 text-base md:text-lg text-[#2a1a10]/70 max-w-2xl leading-relaxed">
+            Consultez et téléchargez mon CV officiel pour découvrir mon parcours, mes compétences et mes réalisations.
+          </p>
+        </Reveal>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          {/* Left Column: Visual CV preview card (7 cols) */}
+          <Reveal className="lg:col-span-7">
+            <div className="glass rounded-3xl p-4 md:p-6 border border-[#DCC7AD]/40 shadow-xl relative group">
+              {/* Action buttons header */}
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-[#DCC7AD]/30">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="font-mono-custom text-xs font-semibold tracking-wider text-[#7B1E2B] uppercase">
+                    Document officiel · 2026
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="px-3.5 py-1.5 rounded-xl text-xs font-mono-custom font-medium border border-[#DCC7AD] text-[#7B1E2B] hover:bg-white transition-all flex items-center gap-1.5 shadow-xs"
+                    title="Agrandir le CV"
+                  >
+                    <span>🔍</span> Agrandir
+                  </button>
+                  <a
+                    href="/cv-rosita-diouf.jpg"
+                    download="CV-Rosita-Diouf.jpg"
+                    className="px-4 py-1.5 rounded-xl text-xs font-mono-custom font-semibold text-white transition-all hover:opacity-95 hover:shadow-md flex items-center gap-1.5"
+                    style={{ background: "linear-gradient(135deg, #7B1E2B, #A67C52)" }}
+                  >
+                    <span>⬇</span> Télécharger
+                  </a>
+                </div>
+              </div>
+
+              {/* CV Image preview container */}
+              <div
+                onClick={() => setModalOpen(true)}
+                className="relative rounded-2xl overflow-hidden cursor-pointer shadow-lg border border-[#DCC7AD]/50 bg-white group/preview"
+              >
+                <img
+                  src={cvPhoto}
+                  alt="Curriculum Vitae de Rosita Diouf — Assistante Digitale, Community Manager & Designer"
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover/preview:scale-[1.02]"
+                />
+
+                {/* Hover overlay hint */}
+                <div className="absolute inset-0 bg-[#3d0e16]/40 backdrop-blur-[2px] opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="glass px-5 py-2.5 rounded-full text-white font-mono-custom text-xs tracking-wider font-semibold flex items-center gap-2 shadow-xl">
+                    <span>🔍</span> Cliquer pour agrandir
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-center text-xs text-[#2a1a10]/50 font-mono-custom mt-4">
+                Astuce : Cliquez sur l'image pour consulter le CV en haute définition.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Right Column: Structured summary cards (5 cols) */}
+          <Reveal delay={150} className="lg:col-span-5 space-y-6">
+            {/* Profil & Titre */}
+            <div className="glass rounded-3xl p-6 border border-[#DCC7AD]/40 shadow-sm">
+              <span className="font-mono-custom text-[11px] uppercase tracking-widest text-[#A67C52] font-semibold">
+                Profil Professionnel
+              </span>
+              <h3 className="font-display text-2xl font-bold text-[#7B1E2B] mt-1 mb-1">
+                ROSITA DIOUF
+              </h3>
+              <p className="font-mono-custom text-xs text-[#A67C52] tracking-wider mb-4">
+                Assistante Digitale · CM · Communication & Création
+              </p>
+              <p className="text-sm text-[#2a1a10]/80 leading-relaxed">
+                Formée dans le domaine de l'assistanat digital, de l'intelligence artificielle et du design, je développe des solutions créatives et adaptées aux besoins des utilisateurs. Curieuse, organisée et proactive, j'aime transformer les idées en projets concrets.
+              </p>
+            </div>
+
+            {/* Compétences clés & jauges */}
+            <div className="glass rounded-3xl p-6 border border-[#DCC7AD]/40 shadow-sm space-y-3.5">
+              <span className="font-mono-custom text-[11px] uppercase tracking-widest text-[#A67C52] font-semibold block">
+                Niveaux d'expertise
+              </span>
+              {skillsBar.map((s) => (
+                <div key={s.name} className="space-y-1">
+                  <div className="flex justify-between text-xs font-mono-custom">
+                    <span className="text-[#2a1a10]/80 font-medium">{s.name}</span>
+                    <span className="text-[#7B1E2B] font-semibold">{s.pct}%</span>
+                  </div>
+                  <div className="h-1.5 w-full bg-[#DCC7AD]/30 rounded-full overflow-hidden">
+                    <div
+                      className="h-full rounded-full transition-all duration-1000"
+                      style={{
+                        width: `${s.pct}%`,
+                        background: "linear-gradient(90deg, #7B1E2B, #A67C52)",
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Expériences & Engagements */}
+            <div className="glass rounded-3xl p-6 border border-[#DCC7AD]/40 shadow-sm space-y-3">
+              <span className="font-mono-custom text-[11px] uppercase tracking-widest text-[#A67C52] font-semibold block">
+                Engagements & Leadership
+              </span>
+              <ul className="space-y-2 text-xs text-[#2a1a10]/80 font-medium">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#7B1E2B]">✦</span>
+                  <span><strong>Députée junior du Sénégal</strong> pour les Nations Unies (2021 - 2023)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#7B1E2B]">✦</span>
+                  <span><strong>Monitrice diplômée</strong> en collectivité éducative (2021 - 2023)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#7B1E2B]">✦</span>
+                  <span><strong>Sonatel Academy — Hackeuses P5</strong> · Assistante Digitale (2026)</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Qualités & Signature */}
+            <div className="glass rounded-3xl p-6 border border-[#DCC7AD]/40 shadow-sm">
+              <span className="font-mono-custom text-[11px] uppercase tracking-widest text-[#A67C52] font-semibold block mb-3">
+                Qualités personnelles
+              </span>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {qualities.map((q) => (
+                  <span
+                    key={q}
+                    className="px-3 py-1 rounded-full text-xs font-mono-custom font-medium"
+                    style={{ background: "rgba(220,199,173,0.35)", color: "#7B1E2B" }}
+                  >
+                    {q}
+                  </span>
+                ))}
+              </div>
+              <div className="pt-4 border-t border-[#DCC7AD]/30 text-center">
+                <p className="font-display text-xl italic text-[#7B1E2B] font-semibold">
+                  « Rêver · Créer · Impacter »
+                </p>
+              </div>
+            </div>
+
+            {/* Direct download banner */}
+            <a
+              href="/cv-rosita-diouf.jpg"
+              download="CV-Rosita-Diouf.jpg"
+              className="w-full py-4 rounded-2xl text-white font-semibold transition-all duration-300 hover:opacity-95 hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-3 text-sm shadow-md"
+              style={{ background: "linear-gradient(135deg, #7B1E2B, #A67C52)" }}
+            >
+              <span>⬇</span>
+              <span>Télécharger mon CV complet</span>
+            </a>
+          </Reveal>
+        </div>
+      </div>
+
+      {/* Lightbox / Modal plein écran */}
+      {modalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in"
+          onClick={() => setModalOpen(false)}
+        >
+          <div
+            className="relative max-w-4xl max-h-[90vh] bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal header */}
+            <div className="p-4 px-6 bg-[#FDFAF6] border-b border-[#DCC7AD]/40 flex items-center justify-between">
+              <div>
+                <h4 className="font-display text-lg font-semibold text-[#7B1E2B]">
+                  Curriculum Vitae — Rosita Diouf
+                </h4>
+                <p className="text-xs text-[#A67C52] font-mono-custom">Format haute résolution</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <a
+                  href="/cv-rosita-diouf.jpg"
+                  download="CV-Rosita-Diouf.jpg"
+                  className="px-4 py-1.5 rounded-xl text-xs font-mono-custom font-semibold text-white"
+                  style={{ background: "linear-gradient(135deg, #7B1E2B, #A67C52)" }}
+                >
+                  Télécharger
+                </a>
+                <button
+                  onClick={() => setModalOpen(false)}
+                  className="w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center text-lg font-bold text-[#2a1a10] transition-colors"
+                  aria-label="Fermer"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            {/* Modal image scroll */}
+            <div className="overflow-y-auto p-4 flex justify-center bg-[#2a1a10]/5">
+              <img
+                src={cvPhoto}
+                alt="CV Rosita Diouf plein écran"
+                className="max-h-[75vh] w-auto object-contain rounded-xl shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
 // ── Tools ──────────────────────────────────────────────────────────────────
 const toolGroups = [
+  { cat: "COMMUNITY MANAGEMENT", tools: ["Meta Business Suite", "Canva", "CapCut", "Instagram", "LinkedIn", "TikTok"] },
   { cat: "DESIGN", tools: ["Figma", "Canva"] },
   { cat: "CRÉATION DE CONTENU", tools: ["Canva", "CapCut"] },
   { cat: "WEB", tools: ["HTML5", "CSS3", "JavaScript"] },
   { cat: "IA", tools: ["ChatGPT", "Outils IA générative"] },
-  { cat: "ORGANISATION", tools: ["Todoist"] },
+  { cat: "ORGANISATION", tools: ["Todoist", "Notion"] },
 ];
 
 function Tools() {
@@ -989,7 +1486,7 @@ function Tools() {
       <div className="max-w-6xl mx-auto px-6">
         <Reveal className="mb-16">
           <div className="flex items-center gap-4">
-            <span className="font-mono-custom text-xs text-[#A67C52] tracking-widest uppercase">07 —</span>
+            <span className="font-mono-custom text-xs text-[#A67C52] tracking-widest uppercase">08 —</span>
             <h2 className="font-display text-5xl md:text-6xl font-semibold text-gradient">Les outils que j'utilise</h2>
           </div>
         </Reveal>
@@ -1074,7 +1571,7 @@ function Contact() {
       <div className="max-w-6xl mx-auto px-6">
         <Reveal className="mb-16">
           <div className="flex items-center gap-4">
-            <span className="font-mono-custom text-xs text-[#A67C52] tracking-widest uppercase">08 —</span>
+            <span className="font-mono-custom text-xs text-[#A67C52] tracking-widest uppercase">09 —</span>
             <h2 className="font-display text-5xl md:text-6xl font-semibold text-gradient">Une idée ? Construisons-la ensemble.</h2>
           </div>
           <p className="mt-6 text-lg text-[#2a1a10]/60 max-w-2xl">
@@ -1153,45 +1650,89 @@ function Contact() {
           <Reveal delay={150}>
             <div className="space-y-6">
               <div className="glass rounded-3xl p-8 border border-[#DCC7AD]/30">
-                <h3 className="font-mono-custom text-xs tracking-widest text-[#A67C52] mb-6 uppercase">Informations</h3>
+                <h3 className="font-mono-custom text-xs tracking-widest text-[#A67C52] mb-6 uppercase">Informations de contact</h3>
                 <div className="space-y-5">
                   {[
-                    { label: "Localisation", value: "Dakar, Sénégal", icon: "📍" },
-                    { label: "Email", value: "[EMAIL À AJOUTER]", icon: "✉" },
-                    { label: "Téléphone", value: "[NUMÉRO À AJOUTER]", icon: "☎" },
+                    {
+                      label: "Localisation",
+                      value: "Dakar, Sénégal",
+                      icon: "📍",
+                      href: null,
+                      sub: "Disponible pour projets & opportunités",
+                    },
+                    {
+                      label: "Email",
+                      value: "rositadiouf02@gmail.com",
+                      icon: "✉",
+                      href: "mailto:rositadiouf02@gmail.com",
+                      sub: "Écrivez-moi directement",
+                    },
+                    {
+                      label: "Téléphone & WhatsApp",
+                      value: "+221 70 406 20 27",
+                      icon: "☎",
+                      href: "tel:+221704062027",
+                      sub: "Joignable au 70 406 20 27",
+                    },
                   ].map((item) => (
-                    <div key={item.label} className="flex items-center gap-4">
+                    <div key={item.label} className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(220,199,173,0.3)" }}>
                         <span className="text-base">{item.icon}</span>
                       </div>
                       <div>
-                        <p className="text-xs text-[#A67C52] font-mono-custom tracking-wider">{item.label}</p>
-                        <p className="text-sm font-medium text-[#2a1a10]/80">{item.value}</p>
+                        <p className="text-xs text-[#A67C52] font-mono-custom tracking-wider uppercase">{item.label}</p>
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            className="text-sm font-semibold text-[#7B1E2B] hover:underline transition-colors block mt-0.5"
+                          >
+                            {item.value}
+                          </a>
+                        ) : (
+                          <p className="text-sm font-semibold text-[#2a1a10]/80 mt-0.5">{item.value}</p>
+                        )}
+                        <p className="text-xs text-[#2a1a10]/50 mt-0.5">{item.sub}</p>
                       </div>
                     </div>
                   ))}
+                </div>
+
+                {/* Direct WhatsApp button */}
+                <div className="mt-6 pt-5 border-t border-[#DCC7AD]/30">
+                  <a
+                    href="https://wa.me/221704062027?text=Bonjour%20Rosita,%20j'ai%20d%C3%A9couvert%20votre%20portfolio..."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl font-mono-custom text-xs font-semibold uppercase tracking-wider text-emerald-800 border border-emerald-300 transition-all duration-200 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 shadow-sm"
+                    style={{ background: "rgba(37, 211, 102, 0.12)" }}
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    Discuter sur WhatsApp (+221 70 406 20 27)
+                  </a>
                 </div>
               </div>
 
               {/* Social links */}
               <div className="glass rounded-3xl p-8 border border-[#DCC7AD]/30">
-                <h3 className="font-mono-custom text-xs tracking-widest text-[#A67C52] mb-6 uppercase">Réseaux</h3>
+                <h3 className="font-mono-custom text-xs tracking-widest text-[#A67C52] mb-6 uppercase">Réseaux & Liens</h3>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { name: "LinkedIn", placeholder: "[LIEN LINKEDIN À AJOUTER]" },
-                    { name: "GitHub", placeholder: "https://github.com/rositadiouf02-hub" },
-                    { name: "Instagram", placeholder: "[LIEN INSTAGRAM À AJOUTER]" },
-                    { name: "TikTok", placeholder: "[LIEN TIKTOK À AJOUTER]" },
+                    { name: "WhatsApp", href: "https://wa.me/221704062027", icon: "wa" },
+                    { name: "GitHub", href: "https://github.com/rositadiouf02-hub", icon: "gh" },
+                    { name: "Email", href: "mailto:rositadiouf02@gmail.com", icon: "✉" },
+                    { name: "LinkedIn", href: "#contact", icon: "in" },
                   ].map((s) => (
                     <a
                       key={s.name}
-                      href={s.placeholder}
+                      href={s.href}
+                      target={s.href.startsWith("http") ? "_blank" : undefined}
+                      rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="flex items-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition-all duration-200 hover:bg-[#7B1E2B] hover:text-white hover:border-[#7B1E2B]"
                       style={{ color: "#7B1E2B", borderColor: "#DCC7AD" }}
                       aria-label={`${s.name} de Rosita Diouf`}
                     >
-                      <span className="text-base">
-                        {s.name === "LinkedIn" ? "in" : s.name === "GitHub" ? "gh" : s.name === "Instagram" ? "ig" : "tt"}
+                      <span className="text-xs font-mono-custom font-bold">
+                        {s.icon}
                       </span>
                       {s.name}
                     </a>
@@ -1214,23 +1755,47 @@ function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="text-center md:text-left">
             <p className="font-display text-3xl font-semibold text-white">ROSITA DIOUF</p>
-            <p className="text-sm text-[#DCC7AD]/60 mt-2">
-              Assistante Digital · UI/UX · Design · Communication · Innovation
+            <p className="text-sm text-[#DCC7AD]/70 mt-2">
+              Assistante Digital · Designer UI/UX · Community Manager (CM)
             </p>
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-3 text-xs text-[#DCC7AD]/80 font-mono-custom">
+              <a href="mailto:rositadiouf02@gmail.com" className="hover:text-white transition-colors underline-offset-2 hover:underline">
+                ✉ rositadiouf02@gmail.com
+              </a>
+              <span>·</span>
+              <a href="tel:+221704062027" className="hover:text-white transition-colors underline-offset-2 hover:underline">
+                ☎ +221 70 406 20 27
+              </a>
+            </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            {["LinkedIn", "GitHub", "Instagram", "TikTok"].map((s) => (
+          <div className="flex items-center gap-3">
+            <a
+              href="/cv-rosita-diouf.jpg"
+              download="CV-Rosita-Diouf.jpg"
+              className="h-9 px-3.5 rounded-full flex items-center justify-center border transition-all duration-200 hover:bg-[#7B1E2B] hover:border-[#7B1E2B] gap-1.5"
+              style={{ borderColor: "rgba(220,199,173,0.3)", color: "#DCC7AD" }}
+              aria-label="Télécharger le CV de Rosita Diouf"
+            >
+              <span className="text-xs font-mono-custom font-semibold">📄</span>
+              <span className="text-xs font-mono-custom">CV HD</span>
+            </a>
+            {[
+              { name: "WhatsApp", href: "https://wa.me/221704062027", icon: "wa" },
+              { name: "GitHub", href: "https://github.com/rositadiouf02-hub", icon: "gh" },
+              { name: "Email", href: "mailto:rositadiouf02@gmail.com", icon: "✉" },
+            ].map((s) => (
               <a
-                key={s}
-                href="#"
-                className="w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-200 hover:bg-[#7B1E2B] hover:border-[#7B1E2B]"
+                key={s.name}
+                href={s.href}
+                target={s.href.startsWith("http") ? "_blank" : undefined}
+                rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="h-9 px-3.5 rounded-full flex items-center justify-center border transition-all duration-200 hover:bg-[#7B1E2B] hover:border-[#7B1E2B] gap-1.5"
                 style={{ borderColor: "rgba(220,199,173,0.3)", color: "#DCC7AD" }}
-                aria-label={s}
+                aria-label={s.name}
               >
-                <span className="text-xs font-mono-custom">
-                  {s === "LinkedIn" ? "in" : s === "GitHub" ? "gh" : s === "Instagram" ? "ig" : "tt"}
-                </span>
+                <span className="text-xs font-mono-custom font-semibold">{s.icon}</span>
+                <span className="text-xs font-mono-custom">{s.name}</span>
               </a>
             ))}
           </div>
@@ -1260,6 +1825,7 @@ export default function App() {
         <Projects />
         <MelovoxCaseStudy />
         <Journey />
+        <CurriculumVitae />
         <Tools />
         <Philosophy />
         <Contact />

@@ -2,6 +2,17 @@ import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
+import fs from 'node:fs'
+
+const cvSource = 'C:/Users/hp/.gemini/antigravity-ide/brain/e06f567b-2dbd-4c10-810a-f0d0461834c0/.user_uploaded/media_1789967331611.jpg'
+try {
+  if (fs.existsSync(cvSource)) {
+    fs.copyFileSync(cvSource, path.resolve(import.meta.dirname, './public/cv-rosita-diouf.jpg'))
+    fs.copyFileSync(cvSource, path.resolve(import.meta.dirname, './src/assets/cv-rosita-diouf.jpg'))
+  }
+} catch {
+  // ignore
+}
 
 import siteConfiguration from './.figma/make/site.json' with { type: 'json' }
 
