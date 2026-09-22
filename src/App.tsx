@@ -1783,7 +1783,7 @@ function Contact() {
                     { name: "WhatsApp", href: "https://wa.me/221704062027", icon: "wa" },
                     { name: "GitHub", href: "https://github.com/rositadiouf02-hub", icon: "gh" },
                     { name: "Email", href: "mailto:rositadiouf02@gmail.com", icon: "✉" },
-                    { name: "LinkedIn", href: "#contact", icon: "in" },
+                    { name: "LinkedIn", href: "https://www.linkedin.com/in/rosita-diouf-215b183b5", icon: "in" },
                   ].map((s) => (
                     <a
                       key={s.name}
