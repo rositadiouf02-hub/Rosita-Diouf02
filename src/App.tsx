@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import presentationVideo from "./assets/presentation.mp4";
-import cvPhoto from "./assets/cv-rosita-diouf.jpg";
 
-// Kept in `public` so the profile portrait is served from a stable URL on Vercel.
+// Kept in `public` so these images are served from stable URLs on Vercel.
 const profilePhoto = `${import.meta.env.BASE_URL}profile.jpg`;
+const cvPhoto = `${import.meta.env.BASE_URL}cv-rosita-diouf.jpg`;
 
 // ── Floating 3D decorative shapes ──────────────────────────────────────────
 function SoundWave({ className = "" }: { className?: string }) {
