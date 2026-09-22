@@ -888,11 +888,19 @@ function Services() {
 // ── Projects ───────────────────────────────────────────────────────────────
 function Projects() {
   const [showJob4EllesDetails, setShowJob4EllesDetails] = useState(false);
+  const [showMelovoxDetails, setShowMelovoxDetails] = useState(false);
 
   const handleJob4EllesClick = () => {
     setShowJob4EllesDetails(true);
     window.setTimeout(() => {
       document.querySelector("#job4elles-details")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 0);
+  };
+
+  const handleMelovoxClick = () => {
+    setShowMelovoxDetails(true);
+    window.setTimeout(() => {
+      document.querySelector("#melovox-details")?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 0);
   };
 
@@ -914,7 +922,22 @@ function Projects() {
         <div className="space-y-8">
           {/* Project 01 — Job4Elles */}
           <Reveal>
-            <div className="glass rounded-3xl overflow-hidden border border-[#DCC7AD]/30 card-hover">
+            <div className="glass rounded-3xl overflow-hidden border border-[#DCC7AD]/30 card-hover grid grid-cols-1 md:grid-cols-2">
+              <div className="relative min-h-72 md:min-h-[360px] overflow-hidden p-8 md:p-10 text-white" style={{ background: "linear-gradient(145deg, #7B1E2B, #5a1520 60%, #A67C52)" }}>
+                <FloatingRing size={190} color="#DCC7AD" className="-top-16 -right-16 opacity-50" />
+                <FloatingSphere size={100} color="#DCC7AD" opacity={0.14} className="bottom-8 left-8" />
+                <div className="relative z-10 h-full flex flex-col justify-between">
+                  <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-mono-custom tracking-wider text-[#F7F2EC]">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                    PROJET DIGITAL
+                  </span>
+                  <div>
+                    <p className="font-mono-custom text-xs tracking-[0.3em] text-[#DCC7AD]">JOB</p>
+                    <h4 className="font-display text-5xl md:text-6xl font-semibold leading-none">4ELLES</h4>
+                    <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/80">Un espace digital conçu pour accompagner les femmes vers de nouvelles opportunités professionnelles.</p>
+                  </div>
+                </div>
+              </div>
               <div className="p-8 md:p-10 space-y-4">
                 <span className="font-mono-custom text-xs text-[#A67C52] tracking-widest">01</span>
                 <h3 className="font-display text-3xl font-semibold text-[#7B1E2B]">JOB4ELLES</h3>
@@ -1001,10 +1024,14 @@ function Projects() {
                   </p>
 
                   <button
+                    type="button"
+                    onClick={handleMelovoxClick}
+                    aria-expanded={showMelovoxDetails}
+                    aria-controls="melovox-details"
                     className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                     style={{ background: "linear-gradient(135deg, #DCC7AD, #A67C52)", color: "#3d0e16" }}
                   >
-                    Découvrir Mélovox
+                    {showMelovoxDetails ? "Projet affiché" : "Découvrir Mélovox"}
                     <span>→</span>
                   </button>
                 </div>
@@ -1048,6 +1075,22 @@ function Projects() {
               </div>
             </div>
           </Reveal>
+
+          {showMelovoxDetails && <Reveal delay={80}>
+            <article id="melovox-details" className="rounded-3xl border border-[#DCC7AD]/30 p-8 md:p-10 text-white scroll-mt-28" style={{ background: "linear-gradient(135deg, #7B1E2B, #3d0e16)" }} aria-labelledby="melovox-detail-title">
+              <span className="font-mono-custom text-xs tracking-widest text-[#DCC7AD]">ÉTUDE DE PROJET — MÉLOVOX</span>
+              <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="md:col-span-2">
+                  <h3 id="melovox-detail-title" className="font-display text-4xl">Préserver les voix, transmettre les histoires.</h3>
+                  <p className="mt-4 leading-relaxed text-[#DCC7AD]/85">Mélovox imagine un lieu numérique où les voix, récits et musiques peuvent être collectés, écoutés et partagés. Le projet valorise le patrimoine oral tout en explorant comment l'intelligence artificielle peut enrichir la recherche, l'organisation et la transmission de ces archives.</p>
+                </div>
+                <div className="rounded-2xl bg-white/10 border border-white/15 p-5">
+                  <p className="font-mono-custom text-xs text-[#DCC7AD]">MA CONTRIBUTION</p>
+                  <p className="mt-3 text-sm leading-relaxed text-white/80">Conception UI/UX, réflexion sur l'expérience d'écoute, identité visuelle et communication du projet culturel.</p>
+                </div>
+              </div>
+            </article>
+          </Reveal>}
         </div>
       </div>
     </section>
