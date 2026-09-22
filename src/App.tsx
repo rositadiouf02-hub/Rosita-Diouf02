@@ -888,6 +888,15 @@ function Services() {
 
 // ── Projects ───────────────────────────────────────────────────────────────
 function Projects() {
+  const [showJob4EllesDetails, setShowJob4EllesDetails] = useState(false);
+
+  const handleJob4EllesClick = () => {
+    setShowJob4EllesDetails(true);
+    window.setTimeout(() => {
+      document.querySelector("#job4elles-details")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 0);
+  };
+
   return (
     <section id="projets" className="py-24 bg-white overflow-hidden" aria-label="Projets">
       <div className="max-w-6xl mx-auto px-6">
@@ -940,12 +949,37 @@ function Projects() {
                     <span key={d} className="text-xs text-[#A67C52] font-mono-custom">• {d}</span>
                   ))}
                 </div>
-                <button className="mt-4 px-6 py-2.5 rounded-xl text-white text-sm font-semibold transition-all hover:opacity-90 hover:shadow-lg" style={{ background: "linear-gradient(135deg, #7B1E2B, #A67C52)" }}>
-                  Voir le projet
+                <button
+                  type="button"
+                  onClick={handleJob4EllesClick}
+                  aria-expanded={showJob4EllesDetails}
+                  aria-controls="job4elles-details"
+                  className="mt-4 px-6 py-2.5 rounded-xl text-white text-sm font-semibold transition-all hover:opacity-90 hover:shadow-lg"
+                  style={{ background: "linear-gradient(135deg, #7B1E2B, #A67C52)" }}
+                >
+                  {showJob4EllesDetails ? "Projet affiché" : "Voir le projet"}
                 </button>
               </div>
             </div>
           </Reveal>
+
+          {showJob4EllesDetails && <Reveal delay={80}>
+            <article id="job4elles-details" className="rounded-3xl border border-[#DCC7AD]/50 bg-[#F7F2EC] p-8 md:p-10 scroll-mt-28" aria-labelledby="job4elles-detail-title">
+              <span className="font-mono-custom text-xs tracking-widest text-[#A67C52]">ÉTUDE DE PROJET — JOB4ELLES</span>
+              <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="md:col-span-2">
+                  <h3 id="job4elles-detail-title" className="font-display text-4xl text-[#7B1E2B]">Une plateforme pensée pour soutenir les carrières féminines.</h3>
+                  <p className="mt-4 leading-relaxed text-[#2a1a10]/75">
+                    Le projet répond au besoin d'un espace clair et rassurant où les femmes peuvent repérer des opportunités, valoriser leurs compétences et accéder à des ressources adaptées. L'expérience a été conçue pour rendre la recherche d'emploi plus simple, inclusive et motivante.
+                  </p>
+                </div>
+                <div className="rounded-2xl bg-white/70 p-5">
+                  <p className="font-mono-custom text-xs text-[#A67C52]">MA CONTRIBUTION</p>
+                  <p className="mt-3 text-sm leading-relaxed text-[#2a1a10]/75">Recherche utilisateur, conception des parcours, interface UI/UX et communication digitale du projet.</p>
+                </div>
+              </div>
+            </article>
+          </Reveal>}
 
           {/* Project 02 — MÉLOVOX — FEATURED */}
           <Reveal delay={100}>
