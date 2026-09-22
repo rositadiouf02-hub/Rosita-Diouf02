@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import presentationVideo from "./assets/presentation.mp4";
 
 // Kept in `public` so these images are served from stable URLs on Vercel.
 const profilePhoto = `${import.meta.env.BASE_URL}profile.jpg`;
@@ -915,23 +914,8 @@ function Projects() {
         <div className="space-y-8">
           {/* Project 01 — Job4Elles */}
           <Reveal>
-            <div className="glass rounded-3xl overflow-hidden border border-[#DCC7AD]/30 card-hover grid grid-cols-1 md:grid-cols-2">
-              <div className="relative min-h-72 md:min-h-[360px] bg-[#3a2218] flex items-center justify-center overflow-hidden group">
-                <video
-                  src={presentationVideo}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute top-4 left-4 glass px-3 py-1 rounded-full text-[11px] font-mono-custom text-[#7B1E2B] flex items-center gap-1.5 backdrop-blur-md pointer-events-none shadow-sm">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  Vidéo de présentation
-                </div>
-              </div>
-              <div className="p-8 space-y-4">
+            <div className="glass rounded-3xl overflow-hidden border border-[#DCC7AD]/30 card-hover">
+              <div className="p-8 md:p-10 space-y-4">
                 <span className="font-mono-custom text-xs text-[#A67C52] tracking-widest">01</span>
                 <h3 className="font-display text-3xl font-semibold text-[#7B1E2B]">JOB4ELLES</h3>
                 <div className="flex flex-wrap gap-2">
