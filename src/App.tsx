@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import profilePhoto from "./assets/profile.jpg";
 import presentationVideo from "./assets/presentation.mp4";
 import cvPhoto from "./assets/cv-rosita-diouf.jpg";
+
+// Kept in `public` so the profile portrait is served from a stable URL on Vercel.
+const profilePhoto = `${import.meta.env.BASE_URL}profile.jpg`;
 
 // ── Floating 3D decorative shapes ──────────────────────────────────────────
 function SoundWave({ className = "" }: { className?: string }) {
