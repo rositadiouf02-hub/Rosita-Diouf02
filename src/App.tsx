@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 // Kept in `public` so these images are served from stable URLs on Vercel.
 const profilePhoto = `${import.meta.env.BASE_URL}profile.jpg`;
 const cvPhoto = `${import.meta.env.BASE_URL}cv-rosita-diouf.jpg`;
+const melovoxMoodboard = `${import.meta.env.BASE_URL}MOODBOARD%20MELOVOX.jpg`;
+const melovoxBrandguidelines = `${import.meta.env.BASE_URL}Brandguidelines%20M%C3%A9lovox.pdf`;
 
 const cmVideos = [
   { file: "IMG_8721.MP4", title: "Projet vidéo CM 02" },
@@ -930,6 +932,25 @@ function Services() {
 function Projects() {
   const [showJob4EllesDetails, setShowJob4EllesDetails] = useState(false);
   const [showMelovoxDetails, setShowMelovoxDetails] = useState(false);
+  const [isMoodboardModalOpen, setIsMoodboardModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMoodboardModalOpen(false);
+      }
+    };
+    if (isMoodboardModalOpen) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMoodboardModalOpen]);
 
   const handleJob4EllesClick = () => {
     setShowJob4EllesDetails(true);
@@ -1064,17 +1085,23 @@ function Projects() {
                     Mélovox est un projet digital autour de la voix, de la musique et de la préservation et transmission du patrimoine culturel et vocal grâce aux nouvelles technologies et à l'intelligence artificielle.
                   </p>
 
-                  <button
-                    type="button"
-                    onClick={handleMelovoxClick}
-                    aria-expanded={showMelovoxDetails}
-                    aria-controls="melovox-details"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                    style={{ background: "linear-gradient(135deg, #DCC7AD, #A67C52)", color: "#3d0e16" }}
-                  >
-                    {showMelovoxDetails ? "Projet affiché" : "Découvrir Mélovox"}
-                    <span>→</span>
-                  </button>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={handleMelovoxClick}
+                      aria-expanded={showMelovoxDetails}
+                      aria-controls="melovox-details"
+                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
+                      style={{ background: "linear-gradient(135deg, #DCC7AD, #A67C52)", color: "#3d0e16" }}
+                    >
+                      {showMelovoxDetails ? "Projet affiché" : "Découvrir Mélovox"}
+                      <span>→</span>
+                    </button>
+                    <span className="text-xs text-[#DCC7AD]/80 font-mono-custom flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      Moodboard &amp; Brand Guidelines inclus
+                    </span>
+                  </div>
                 </div>
 
                 {/* Mélovox visual */}
@@ -1130,8 +1157,238 @@ function Projects() {
                   <p className="mt-3 text-sm leading-relaxed text-white/80">Conception UI/UX, réflexion sur l'expérience d'écoute, identité visuelle et communication du projet culturel.</p>
                 </div>
               </div>
+
+              {/* Livrables officiels : Moodboard & Brand Guidelines */}
+              <div className="mt-10 pt-8 border-t border-[#DCC7AD]/20">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                  <div>
+                    <span className="font-mono-custom text-xs tracking-widest text-[#DCC7AD]/80 uppercase">
+                      Livrables de conception &amp; Identité visuelle
+                    </span>
+                    <h4 className="font-display text-2xl md:text-3xl font-semibold mt-1 text-white">
+                      Ressources &amp; Créations du projet
+                    </h4>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono-custom bg-white/10 border border-[#DCC7AD]/30 text-[#DCC7AD]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      2 documents officiels
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Card 1: Moodboard Mélovox */}
+                  <div className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-md flex flex-col justify-between overflow-hidden relative group">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-mono-custom text-xs text-[#DCC7AD] tracking-wider uppercase flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-[#DCC7AD]" />
+                          Moodboard Direction Artistique
+                        </span>
+                        <span className="text-[11px] font-mono-custom px-2.5 py-0.5 rounded-full bg-white/10 text-white/70">
+                          JPG HD
+                        </span>
+                      </div>
+
+                      {/* Interactive image preview */}
+                      <div
+                        className="relative rounded-xl overflow-hidden border border-white/20 aspect-[16/10] bg-black/40 cursor-pointer shadow-lg group-hover:border-[#DCC7AD]/60 transition-all duration-300"
+                        onClick={() => setIsMoodboardModalOpen(true)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setIsMoodboardModalOpen(true);
+                          }
+                        }}
+                        aria-label="Agrandir le moodboard Mélovox en plein écran"
+                      >
+                        <img
+                          src={melovoxMoodboard}
+                          alt="Moodboard officiel Mélovox — Direction artistique et inspirations"
+                          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-80 group-hover:opacity-95 transition-opacity flex items-end justify-between p-4">
+                          <div>
+                            <p className="text-white font-semibold text-sm">Univers Visuel Mélovox</p>
+                            <p className="text-xs text-[#DCC7AD]/90">Chœurs, harmonies bordeaux &amp; doré, instruments &amp; IA</p>
+                          </div>
+                          <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/20 backdrop-blur-sm text-xs font-semibold text-white border border-white/30 group-hover:bg-[#7B1E2B] transition-colors">
+                            🔍 Plein écran
+                          </span>
+                        </div>
+                      </div>
+
+                      <p className="text-sm leading-relaxed text-white/80">
+                        Exploration visuelle combinant la ferveur des voix chorales, l&apos;élégance du bordeaux profond et de l&apos;or champenois, les instruments nobles et les interfaces d&apos;écoute intelligentes.
+                      </p>
+                    </div>
+
+                    <div className="mt-6 flex flex-wrap gap-3 pt-4 border-t border-white/10">
+                      <button
+                        type="button"
+                        onClick={() => setIsMoodboardModalOpen(true)}
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm bg-white/15 hover:bg-white/25 text-white border border-white/20 transition-all cursor-pointer"
+                      >
+                        <span>🔍</span>
+                        <span>Voir en plein écran</span>
+                      </button>
+                      <a
+                        href={melovoxMoodboard}
+                        download="Moodboard-Melovox.jpg"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm transition-all hover:opacity-95 shadow-md"
+                        style={{ background: "linear-gradient(135deg, #DCC7AD, #A67C52)", color: "#3d0e16" }}
+                      >
+                        <span>↓</span>
+                        <span>Télécharger</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Card 2: Brand Guidelines PDF */}
+                  <div className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-md flex flex-col justify-between overflow-hidden relative group">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-mono-custom text-xs text-[#DCC7AD] tracking-wider uppercase flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-[#A67C52]" />
+                          Brand Guidelines Officiel
+                        </span>
+                        <span className="text-[11px] font-mono-custom px-2.5 py-0.5 rounded-full bg-white/10 text-white/70">
+                          PDF • 20 Pages • 4 Mo
+                        </span>
+                      </div>
+
+                      {/* Graphic document cover / preview card */}
+                      <div
+                        className="relative rounded-xl overflow-hidden border border-white/20 aspect-[16/10] p-5 flex flex-col justify-between shadow-lg"
+                        style={{ background: "linear-gradient(135deg, #5a1520 0%, #3d0e16 60%, #1a060a 100%)" }}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-lg bg-[#DCC7AD]/20 border border-[#DCC7AD]/40 flex items-center justify-center text-xs font-bold text-[#DCC7AD]">
+                              M
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold tracking-widest text-white uppercase font-mono-custom">MÉLOVOX</p>
+                              <p className="text-[10px] text-[#DCC7AD]">Ta musique, ton univers</p>
+                            </div>
+                          </div>
+                          <span className="px-2 py-0.5 rounded text-[10px] font-mono-custom font-semibold bg-[#7B1E2B] text-white border border-white/20">
+                            DOC. PDF
+                          </span>
+                        </div>
+
+                        <div className="space-y-2 my-auto py-2">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xl">📕</span>
+                            <p className="font-display text-xl md:text-2xl font-bold text-white leading-tight">
+                              Guide de Marque &amp; Normes Graphiques
+                            </p>
+                          </div>
+                          <p className="text-xs text-[#DCC7AD]/80 line-clamp-2">
+                            Typographies Astra &amp; Poppins • Palette #7B1E2B, #D8C3A5, #FFFFFF • Mockups UI, montre &amp; casques
+                          </p>
+                        </div>
+
+                        <div className="flex items-center justify-between pt-2 border-t border-white/10 text-[11px] text-[#DCC7AD]/70 font-mono-custom">
+                          <div className="flex gap-1.5 items-center">
+                            <span className="w-3 h-3 rounded-full bg-[#7B1E2B] border border-white/30" title="#7B1E2B" />
+                            <span className="w-3 h-3 rounded-full bg-[#D8C3A5] border border-white/30" title="#D8C3A5" />
+                            <span className="w-3 h-3 rounded-full bg-white border border-white/30" title="#FFFFFF" />
+                          </div>
+                          <span>Guide officiel (4 Mo)</span>
+                        </div>
+                      </div>
+
+                      <p className="text-sm leading-relaxed text-white/80">
+                        Le document officiel détaillant la construction du logotype Mélovox, les typographies de titrage et de texte, le nuancier chromatique et les déclinaisons sur supports digitaux et physiques.
+                      </p>
+                    </div>
+
+                    <div className="mt-6 flex flex-wrap gap-3 pt-4 border-t border-white/10">
+                      <a
+                        href={melovoxBrandguidelines}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm bg-white/15 hover:bg-white/25 text-white border border-white/20 transition-all cursor-pointer"
+                      >
+                        <span>↗</span>
+                        <span>Consulter le PDF</span>
+                      </a>
+                      <a
+                        href={melovoxBrandguidelines}
+                        download="Brandguidelines-Melovox.pdf"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm transition-all hover:opacity-95 shadow-md cursor-pointer"
+                        style={{ background: "linear-gradient(135deg, #DCC7AD, #A67C52)", color: "#3d0e16" }}
+                      >
+                        <span>↓</span>
+                        <span>Télécharger</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </article>
           </Reveal>}
+
+          {/* Lightbox Modal pour le Moodboard */}
+          {isMoodboardModalOpen && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 md:p-8 animate-fadeIn"
+              onClick={() => setIsMoodboardModalOpen(false)}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Moodboard Mélovox en haute résolution"
+            >
+              <div
+                className="relative max-w-6xl w-full max-h-[95vh] flex flex-col bg-[#20070b]/95 border border-[#DCC7AD]/40 rounded-3xl overflow-hidden shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Modal Header */}
+                <div className="flex items-center justify-between px-6 py-4 border-b border-white/15 bg-black/40">
+                  <div className="flex items-center gap-3">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#DCC7AD] animate-pulse" />
+                    <h4 className="font-display text-xl md:text-2xl text-white font-semibold">
+                      Moodboard Officiel — Mélovox
+                    </h4>
+                    <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-xs font-mono-custom bg-white/10 text-[#DCC7AD]">
+                      Haute Définition
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <a
+                      href={melovoxMoodboard}
+                      download="Moodboard-Melovox.jpg"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-[#DCC7AD] text-[#3d0e16] hover:bg-[#c4ab8c] transition-colors"
+                    >
+                      <span>↓</span>
+                      <span>Télécharger HD</span>
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setIsMoodboardModalOpen(false)}
+                      className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors text-lg cursor-pointer"
+                      aria-label="Fermer la vue plein écran"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                </div>
+
+                {/* Modal Image Body */}
+                <div className="p-4 md:p-6 overflow-auto flex items-center justify-center max-h-[calc(95vh-80px)]">
+                  <img
+                    src={melovoxMoodboard}
+                    alt="Moodboard complet Mélovox"
+                    className="max-h-[80vh] w-auto object-contain rounded-xl shadow-2xl border border-white/10"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -1211,6 +1468,119 @@ function MelovoxCaseStudy() {
                     {tag}
                   </span>
                 ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Livrables & Documents du Case Study */}
+        <Reveal delay={250}>
+          <div className="mt-14 rounded-3xl border border-[#DCC7AD]/40 bg-white p-8 md:p-10 shadow-lg">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-[#DCC7AD]/30">
+              <div>
+                <span className="font-mono-custom text-xs text-[#A67C52] tracking-widest uppercase">DOCUMENTS &amp; ASSETS</span>
+                <h3 className="font-display text-3xl md:text-4xl font-bold text-[#7B1E2B] mt-1">Livrables du projet Mélovox</h3>
+              </div>
+              <p className="text-sm text-[#2a1a10]/75 max-w-md">
+                Retrouvez la direction artistique complète (Moodboard HD) et la charte graphique officielle créées pour le projet Mélovox.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Moodboard preview item */}
+              <div className="rounded-2xl border border-[#DCC7AD]/30 bg-[#F7F2EC] p-6 flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono-custom px-3 py-1 rounded-full bg-[#7B1E2B]/10 text-[#7B1E2B] font-semibold">
+                      MOODBOARD HD
+                    </span>
+                    <span className="text-xs text-[#2a1a10]/60 font-mono-custom">Image JPG</span>
+                  </div>
+                  <div className="relative rounded-xl overflow-hidden aspect-[16/10] border border-[#DCC7AD]/40 bg-black/10 group">
+                    <img
+                      src={melovoxMoodboard}
+                      alt="Moodboard Mélovox"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span className="px-3 py-1.5 rounded-lg bg-white/90 text-xs font-semibold text-[#7B1E2B] shadow">
+                        🔍 Voir l&apos;image HD
+                      </span>
+                    </div>
+                  </div>
+                  <h4 className="font-display text-2xl font-bold text-[#7B1E2B]">Moodboard &amp; Univers Visuel</h4>
+                  <p className="text-sm text-[#2a1a10]/75 leading-relaxed">
+                    Inspirations chorales, culturelles, harmonies chromatiques bordeaux et or, instruments et poésie de la voix.
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-[#DCC7AD]/30 flex gap-3">
+                  <a
+                    href={melovoxMoodboard}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-2.5 px-4 rounded-xl text-center text-xs md:text-sm font-semibold bg-[#7B1E2B] text-white hover:bg-[#5a1520] transition-colors"
+                  >
+                    Ouvrir l&apos;image HD ↗
+                  </a>
+                  <a
+                    href={melovoxMoodboard}
+                    download="Moodboard-Melovox.jpg"
+                    className="py-2.5 px-4 rounded-xl text-center text-xs md:text-sm font-semibold border border-[#7B1E2B]/30 text-[#7B1E2B] hover:bg-[#7B1E2B]/10 transition-colors"
+                  >
+                    Télécharger ↓
+                  </a>
+                </div>
+              </div>
+
+              {/* Brand Guidelines preview item */}
+              <div className="rounded-2xl border border-[#DCC7AD]/30 bg-[#F7F2EC] p-6 flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono-custom px-3 py-1 rounded-full bg-[#A67C52]/15 text-[#A67C52] font-semibold">
+                      CHARTE GRAPHIQUE
+                    </span>
+                    <span className="text-xs text-[#2a1a10]/60 font-mono-custom">PDF 20 pages • 4 Mo</span>
+                  </div>
+                  <div
+                    className="relative rounded-xl overflow-hidden aspect-[16/10] border border-[#DCC7AD]/40 p-5 flex flex-col justify-between text-white shadow-inner"
+                    style={{ background: "linear-gradient(135deg, #7B1E2B, #3d0e16)" }}
+                  >
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-mono-custom text-[#DCC7AD] font-bold">MÉLOVOX</span>
+                      <span className="bg-white/20 px-2 py-0.5 rounded text-[10px] font-mono-custom">BRAND BOOK</span>
+                    </div>
+                    <div className="space-y-1 my-auto">
+                      <p className="font-display text-xl font-bold">Brand Guidelines Mélovox</p>
+                      <p className="text-xs text-[#DCC7AD]/85">Ta musique, ton univers</p>
+                    </div>
+                    <div className="flex items-center justify-between text-[11px] text-[#DCC7AD]/80 font-mono-custom pt-2 border-t border-white/10">
+                      <span>Typographies • Couleurs • Mockups</span>
+                      <span>20 pages</span>
+                    </div>
+                  </div>
+                  <h4 className="font-display text-2xl font-bold text-[#7B1E2B]">Brand Guidelines Mélovox</h4>
+                  <p className="text-sm text-[#2a1a10]/75 leading-relaxed">
+                    Normes graphiques complètes, logotypes, nuanciers, mockups montre connectée, casques audio et application mobile.
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-[#DCC7AD]/30 flex gap-3">
+                  <a
+                    href={melovoxBrandguidelines}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-2.5 px-4 rounded-xl text-center text-xs md:text-sm font-semibold bg-[#7B1E2B] text-white hover:bg-[#5a1520] transition-colors"
+                  >
+                    Consulter le PDF ↗
+                  </a>
+                  <a
+                    href={melovoxBrandguidelines}
+                    download="Brandguidelines-Melovox.pdf"
+                    className="py-2.5 px-4 rounded-xl text-center text-xs md:text-sm font-semibold border border-[#7B1E2B]/30 text-[#7B1E2B] hover:bg-[#7B1E2B]/10 transition-colors"
+                  >
+                    Télécharger ↓
+                  </a>
+                </div>
               </div>
             </div>
           </div>

@@ -18,3 +18,7 @@ logs/
 # beside it.
 /.plugins/
 /.opencode-skills/
+
+# Windows Explorer duplicate copies
+* - Copie.*
+*- Copie.*
