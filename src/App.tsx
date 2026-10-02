@@ -4,6 +4,19 @@ import { useEffect, useRef, useState } from "react";
 const profilePhoto = `${import.meta.env.BASE_URL}profile.jpg`;
 const cvPhoto = `${import.meta.env.BASE_URL}cv-rosita-diouf.jpg`;
 
+const cmVideos = [
+  { file: "Sans titre - March 11, 2026 at 08.40.14.mp4", title: "Création de contenu" },
+  { file: "KDDA0960.MP4", title: "Projet vidéo CM 01" },
+  { file: "IMG_8721.MP4", title: "Projet vidéo CM 02" },
+  { file: "IMG_8223.MOV", title: "Projet vidéo CM 03" },
+  { file: "IMG_5845.MP4", title: "Projet vidéo CM 04" },
+  { file: "IMG_5794.MP4", title: "Projet vidéo CM 05" },
+  { file: "IMG_4704.MOV", title: "Projet vidéo CM 06" },
+].map((video) => ({
+  ...video,
+  src: `${import.meta.env.BASE_URL}photo/${encodeURIComponent(video.file)}`,
+}));
+
 // ── Floating 3D decorative shapes ──────────────────────────────────────────
 function SoundWave({ className = "" }: { className?: string }) {
   return (
@@ -92,6 +105,7 @@ function Navbar() {
 
   const links = [
     ["Accueil", "#accueil"],
+    ["Vidéos CM", "#cm-videos"],
     ["À propos", "#a-propos"],
     ["Compétences", "#competences"],
     ["Services", "#services"],
@@ -636,6 +650,34 @@ function DigitalProfile() {
                   <p className="text-xs text-[#2a1a10]/70 leading-relaxed">
                     Suivi du taux d'engagement, croissance d'abonnés, portée des publications et reporting d'optimisation régulier.
                   </p>
+                </div>
+              </div>
+
+              <div id="cm-videos" className="mt-10 scroll-mt-28">
+                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-5">
+                  <div>
+                    <p className="font-mono-custom text-xs font-semibold tracking-widest uppercase text-[#A67C52]">Portfolio vidéo</p>
+                    <h4 className="font-display text-2xl font-semibold text-[#7B1E2B] mt-1">Réalisations Community Manager</h4>
+                  </div>
+                  <p className="text-xs text-[#2a1a10]/60">{cmVideos.length} vidéos à découvrir</p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                  {cmVideos.map((video) => (
+                    <article key={video.file} className="overflow-hidden rounded-2xl bg-white/85 border border-[#DCC7AD]/50 shadow-sm">
+                      <video
+                        className="w-full aspect-[9/16] object-cover bg-[#2a1a10]"
+                        controls
+                        preload="metadata"
+                        playsInline
+                        aria-label={video.title}
+                      >
+                        <source src={video.src} />
+                        Votre navigateur ne prend pas en charge la lecture vidéo.
+                      </video>
+                      <p className="px-4 py-3 text-sm font-medium text-[#7B1E2B]">{video.title}</p>
+                    </article>
+                  ))}
                 </div>
               </div>
             </div>
