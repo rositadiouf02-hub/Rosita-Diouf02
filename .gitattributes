@@ -26,6 +26,11 @@ public/cv-rosita-diouf.jpg -filter -diff -merge -text
 # ---------------------------------------------------------------------------
 *.mp4                filter=lfs diff=lfs merge=lfs -text
 *.mov                filter=lfs diff=lfs merge=lfs -text
+
+# Vercel's Git deployment needs the CM videos as regular repository assets.
+public/photo/*.mp4   -filter -diff -merge -text
+public/photo/*.MP4   -filter -diff -merge -text
+public/photo/*.MOV   -filter -diff -merge -text
 *.avi                filter=lfs diff=lfs merge=lfs -text
 *.mkv                filter=lfs diff=lfs merge=lfs -text
 *.wmv                filter=lfs diff=lfs merge=lfs -text
