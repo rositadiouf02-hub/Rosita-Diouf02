@@ -5,13 +5,12 @@ const profilePhoto = `${import.meta.env.BASE_URL}profile.jpg`;
 const cvPhoto = `${import.meta.env.BASE_URL}cv-rosita-diouf.jpg`;
 
 const cmVideos = [
-  { file: "Sans titre - March 11, 2026 at 08.40.14.mp4", title: "Création de contenu" },
-  { file: "KDDA0960.MP4", title: "Projet vidéo CM 01" },
   { file: "IMG_8721.MP4", title: "Projet vidéo CM 02" },
   { file: "IMG_8223.MOV", title: "Projet vidéo CM 03" },
   { file: "IMG_5845.MP4", title: "Projet vidéo CM 04" },
   { file: "IMG_5794.MP4", title: "Projet vidéo CM 05" },
-  { file: "IMG_4704.MOV", title: "Projet vidéo CM 06" },
+  { file: "IMG_3457.MP4", title: "Nouvelle réalisation CM 01" },
+  { file: "IMG_3657.MP4", title: "Nouvelle réalisation CM 02" },
 ].map((video) => ({
   ...video,
   src: `${import.meta.env.BASE_URL}photo/${encodeURIComponent(video.file)}`,
