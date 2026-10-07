@@ -8,9 +8,11 @@
 *.jpg                filter=lfs diff=lfs merge=lfs -text
 *.jpeg               filter=lfs diff=lfs merge=lfs -text
 
-# Vercel does not resolve Git LFS pointers for this runtime asset.
+# Vercel does not resolve Git LFS pointers for these runtime assets.
 public/profile.jpg -filter -diff -merge -text
 public/cv-rosita-diouf.jpg -filter -diff -merge -text
+"public/MOODBOARD MELOVOX.jpg" -filter -diff -merge -text
+"public/Brandguidelines Mélovox.pdf" -filter -diff -merge -text
 *.gif                filter=lfs diff=lfs merge=lfs -text
 *.bmp                filter=lfs diff=lfs merge=lfs -text
 *.tiff               filter=lfs diff=lfs merge=lfs -text
