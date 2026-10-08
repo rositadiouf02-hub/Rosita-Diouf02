@@ -5,6 +5,8 @@ const profilePhoto = `${import.meta.env.BASE_URL}profile.jpg`;
 const cvPhoto = `${import.meta.env.BASE_URL}cv-rosita-diouf.jpg`;
 const melovoxMoodboard = `${import.meta.env.BASE_URL}MOODBOARD%20MELOVOX.jpg`;
 const melovoxBrandguidelines = `${import.meta.env.BASE_URL}Brandguidelines%20M%C3%A9lovox.pdf`;
+const job4EllesSocialMockup = `${import.meta.env.BASE_URL}job4elles-social-mockup.jpg`;
+const job4EllesBrandIdentity = `${import.meta.env.BASE_URL}job4elles-brand-identity.jpg`;
 
 const cmVideos = [
   { file: "IMG_8721.MP4", title: "Projet vidéo CM 02" },
@@ -1035,16 +1037,88 @@ function Projects() {
           {showJob4EllesDetails && <Reveal delay={80}>
             <article id="job4elles-details" className="rounded-3xl border border-[#DCC7AD]/50 bg-[#F7F2EC] p-8 md:p-10 scroll-mt-28" aria-labelledby="job4elles-detail-title">
               <span className="font-mono-custom text-xs tracking-widest text-[#A67C52]">ÉTUDE DE PROJET — JOB4ELLES</span>
+
+              {/* Header */}
               <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="md:col-span-2">
                   <h3 id="job4elles-detail-title" className="font-display text-4xl text-[#7B1E2B]">Une plateforme pensée pour soutenir les carrières féminines.</h3>
                   <p className="mt-4 leading-relaxed text-[#2a1a10]/75">
-                    Le projet répond au besoin d'un espace clair et rassurant où les femmes peuvent repérer des opportunités, valoriser leurs compétences et accéder à des ressources adaptées. L'expérience a été conçue pour rendre la recherche d'emploi plus simple, inclusive et motivante.
+                    Le projet répond au besoin d&apos;un espace clair et rassurant où les femmes peuvent repérer des opportunités, valoriser leurs compétences et accéder à des ressources adaptées. L&apos;expérience a été conçue pour rendre la recherche d&apos;emploi plus simple, inclusive et motivante.
                   </p>
                 </div>
-                <div className="rounded-2xl bg-white/70 p-5">
+                <div className="rounded-2xl bg-white/70 border border-[#DCC7AD]/40 p-5">
                   <p className="font-mono-custom text-xs text-[#A67C52]">MA CONTRIBUTION</p>
                   <p className="mt-3 text-sm leading-relaxed text-[#2a1a10]/75">Recherche utilisateur, conception des parcours, interface UI/UX et communication digitale du projet.</p>
+                </div>
+              </div>
+
+              {/* Livrables visuels */}
+              <div className="mt-10 pt-8 border-t border-[#DCC7AD]/30">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                  <div>
+                    <span className="font-mono-custom text-xs tracking-widest text-[#A67C52] uppercase">
+                      Livrables de conception &amp; Communication visuelle
+                    </span>
+                    <h4 className="font-display text-2xl md:text-3xl font-semibold mt-1 text-[#7B1E2B]">
+                      Créations graphiques du projet
+                    </h4>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono-custom bg-[#7B1E2B]/10 border border-[#A67C52]/30 text-[#A67C52]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    2 visuels officiels
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 gap-6">
+
+                  {/* Visuel 1 — Mockup Réseaux Sociaux */}
+                  <div className="rounded-2xl border border-[#DCC7AD]/50 bg-white/60 backdrop-blur-sm overflow-hidden group">
+                    <div className="flex items-center justify-between px-5 py-3 border-b border-[#DCC7AD]/30 bg-[#F7F2EC]">
+                      <span className="font-mono-custom text-xs text-[#A67C52] tracking-wider uppercase flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-[#A67C52]" />
+                        Mockup Réseaux Sociaux &amp; Digital
+                      </span>
+                      <span className="text-[11px] font-mono-custom px-2.5 py-0.5 rounded-full bg-[#7B1E2B]/10 text-[#7B1E2B]">
+                        Communication digitale
+                      </span>
+                    </div>
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={job4EllesSocialMockup}
+                        alt="Mockup réseaux sociaux Job4Elles — posts Instagram, stories et mise en page digitale"
+                        className="w-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#3D1F0D]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                        <p className="text-white text-sm font-semibold">Stratégie de contenu digital — Posts &amp; Stories Instagram</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Visuel 2 — Identité de marque / Stationery */}
+                  <div className="rounded-2xl border border-[#DCC7AD]/50 bg-white/60 backdrop-blur-sm overflow-hidden group">
+                    <div className="flex items-center justify-between px-5 py-3 border-b border-[#DCC7AD]/30 bg-[#F7F2EC]">
+                      <span className="font-mono-custom text-xs text-[#A67C52] tracking-wider uppercase flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-[#7B1E2B]" />
+                        Identité Visuelle &amp; Branding
+                      </span>
+                      <span className="text-[11px] font-mono-custom px-2.5 py-0.5 rounded-full bg-[#7B1E2B]/10 text-[#7B1E2B]">
+                        Brand Identity
+                      </span>
+                    </div>
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={job4EllesBrandIdentity}
+                        alt="Identité visuelle Job4Elles — stationery, papeterie de marque, cartes de visite, letterhead"
+                        className="w-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#3D1F0D]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                        <p className="text-white text-sm font-semibold">Charte graphique &amp; papeterie officielle — Job4Elles</p>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </article>
