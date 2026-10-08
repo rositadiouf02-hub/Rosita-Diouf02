@@ -995,13 +995,70 @@ function Projects() {
                     <span className="w-2 h-2 rounded-full bg-emerald-400" />
                     PROJET DIGITAL
                   </span>
+
+                  {/* UI Mockup — Page Job4Elles */}
+                  <div className="mt-4 flex-1 flex items-center justify-center">
+                    <div
+                      className="w-full max-w-[280px] rounded-2xl overflow-hidden shadow-2xl border border-white/20"
+                      style={{ background: "#F9F4EE" }}
+                    >
+                      {/* Browser bar */}
+                      <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[#DCC7AD]/40" style={{ background: "#3D1F0D" }}>
+                        <span className="w-2 h-2 rounded-full bg-red-400/80" />
+                        <span className="w-2 h-2 rounded-full bg-yellow-400/80" />
+                        <span className="w-2 h-2 rounded-full bg-green-400/80" />
+                        <div className="ml-2 flex-1 rounded px-2 py-0.5 text-[8px] font-mono-custom text-[#DCC7AD]/70" style={{ background: "rgba(255,255,255,0.08)" }}>
+                          job4elle.org
+                        </div>
+                      </div>
+                      {/* Nav */}
+                      <div className="flex items-center justify-between px-4 py-2 border-b border-[#DCC7AD]/20" style={{ background: "#3D1F0D" }}>
+                        <span className="font-bold text-[11px] text-[#DCC7AD] tracking-wider">job<span className="text-white">4</span>elle</span>
+                        <div className="flex gap-3">
+                          {["Formations", "Offres", "Communauté"].map(item => (
+                            <span key={item} className="text-[7px] text-[#DCC7AD]/60 font-mono-custom">{item}</span>
+                          ))}
+                        </div>
+                        <span className="text-[7px] px-2 py-0.5 rounded-full text-[#3D1F0D] font-bold" style={{ background: "#DCC7AD" }}>Rejoindre</span>
+                      </div>
+                      {/* Hero section */}
+                      <div className="px-4 py-3" style={{ background: "linear-gradient(135deg, #7B1E2B 0%, #A67C52 100%)" }}>
+                        <p className="text-[8px] font-mono-custom text-[#DCC7AD]/80 tracking-widest">FORMER · CONNECTER · RÉUSSIR</p>
+                        <p className="font-bold text-white text-[13px] leading-tight mt-0.5">Ton avenir<br /><em className="not-italic text-[#DCC7AD]">se construit</em><br />aussi en ligne.</p>
+                        <div className="mt-2 flex gap-2">
+                          <span className="text-[7px] px-2.5 py-1 rounded-lg font-semibold text-[#3D1F0D]" style={{ background: "#DCC7AD" }}>Commencer →</span>
+                          <span className="text-[7px] px-2.5 py-1 rounded-lg font-semibold text-[#DCC7AD] border border-[#DCC7AD]/40">En savoir plus</span>
+                        </div>
+                      </div>
+                      {/* Feature cards */}
+                      <div className="px-4 py-3 grid grid-cols-2 gap-1.5">
+                        {[
+                          { icon: "🎓", label: "Formations" },
+                          { icon: "💼", label: "Offres d'emploi" },
+                          { icon: "🤝", label: "Mentorat" },
+                          { icon: "🌐", label: "Réseau" },
+                        ].map(f => (
+                          <div key={f.label} className="rounded-lg p-2 flex items-center gap-1.5 border border-[#A67C52]/20" style={{ background: "rgba(166,124,82,0.08)" }}>
+                            <span className="text-[10px]">{f.icon}</span>
+                            <span className="text-[7px] font-semibold text-[#7B1E2B]">{f.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                      {/* CTA footer */}
+                      <div className="px-4 py-2 border-t border-[#DCC7AD]/20 flex items-center justify-between" style={{ background: "#F9F4EE" }}>
+                        <p className="text-[7px] text-[#A67C52] font-mono-custom italic">Ensemble, vers ton potentiel !</p>
+                        <span className="w-4 h-4 rounded-full flex items-center justify-center text-[8px] text-white" style={{ background: "#7B1E2B" }}>→</span>
+                      </div>
+                    </div>
+                  </div>
+
                   <div>
                     <p className="font-mono-custom text-xs tracking-[0.3em] text-[#DCC7AD]">JOB</p>
-                    <h4 className="font-display text-5xl md:text-6xl font-semibold leading-none">4ELLES</h4>
-                    <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/80">Un espace digital conçu pour accompagner les femmes vers de nouvelles opportunités professionnelles.</p>
+                    <h4 className="font-display text-4xl md:text-5xl font-semibold leading-none">4ELLES</h4>
                   </div>
                 </div>
               </div>
+
               <div className="p-8 md:p-10 space-y-4">
                 <span className="font-mono-custom text-xs text-[#A67C52] tracking-widest">01</span>
                 <h3 className="font-display text-3xl font-semibold text-[#7B1E2B]">JOB4ELLES</h3>
